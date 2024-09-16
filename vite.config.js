@@ -1,5 +1,6 @@
 import { resolve } from "path";
 import { defineConfig } from "vite";
+import os from "os";
 
 export default defineConfig({
   appType: "mpa",
@@ -18,5 +19,8 @@ export default defineConfig({
         createPost: resolve(__dirname, "./post/create/index.html"),
       },
     },
+  },
+  server: {
+    open: os.platform() === "darwin" ? "Google Chrome" : "chrome", // Open Chrome based on the OS
   },
 });
