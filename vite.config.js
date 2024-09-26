@@ -20,7 +20,9 @@ export default defineConfig({
       },
     },
   },
+  /*
   server: {
     open: os.platform() === "darwin" ? "Google Chrome" : "chrome", // Open Chrome based on the OS
   },
+  */
 });
