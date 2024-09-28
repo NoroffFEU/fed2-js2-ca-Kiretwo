@@ -2,6 +2,7 @@ import "./css/style.css";
 import router from "./js/router";
 import { onRegister } from "./js/ui/auth/register.js";
 import { onLogin } from "./js/ui/auth/login.js";
+import { displayPosts } from "./js/router/views/home.js";
 
 // Initialize the app
 async function initializeApp() {
@@ -19,7 +20,13 @@ async function initializeApp() {
     if (loginForm) {
       loginForm.addEventListener('submit', onLogin);
     }
+
+    // Display posts if we are on the homepage
+    if (window.location.pathname === "/") {
+      displayPosts();
+    }
   });
 }
 
 initializeApp();
+
