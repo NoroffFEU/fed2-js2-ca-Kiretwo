@@ -4,7 +4,7 @@ import os from "os";
 
 export default defineConfig({
   appType: "mpa",
-  base: "",
+  base: "/",
   build: {
     target: "esnext",
     rollupOptions: {
@@ -20,9 +20,7 @@ export default defineConfig({
       },
     },
   },
-  /*
   server: {
-    open: os.platform() === "darwin" ? "Google Chrome" : "chrome", // Open Chrome based on the OS
+    open: "/", // Open the server automatically in browser
   },
-  */
 });
