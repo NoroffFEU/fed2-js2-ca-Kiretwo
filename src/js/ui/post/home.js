@@ -1,7 +1,7 @@
 import { readPosts } from "../../api/post/read.js";
 
 // Function to initialize the home page
-export async function initHomePage() {
+export async function displayPosts() {
   try {
     const posts = await readPosts(12); // Fetch only the first 12 posts
 
