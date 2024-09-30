@@ -1,1 +1,14 @@
 @import url(_reset.css);
+
+/* ALL */
+.hidden {
+  display: none;
+}
+
+/* HOME */
+.nav-buttons {
+  display: flex;
+  gap: 10px; /* Add spacing between the buttons */
+  align-items: center; /* Vertically align items in the container */
+}
+

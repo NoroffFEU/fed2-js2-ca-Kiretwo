@@ -2,24 +2,47 @@ import "./css/style.css";
 import router from "./js/router";
 import { onRegister } from "./js/ui/auth/register.js";
 import { onLogin } from "./js/ui/auth/login.js";
+import { displayPosts } from "./js/ui/post/home.js";
+import { initProfilePage } from "./js/ui/profile/display.js";
+import { onUpdateProfile } from "./js/ui/profile/update.js";
+import { handleAuthUI } from "./js/ui/post/home.js";
+import { setLogoutListener } from "./js/ui/global/logout.js";
+import { onUpdatePost } from "./js/ui/post/update.js";
 
-// Initialize the app
-async function initializeApp() {
-  await router(window.location.pathname);
+await router(window.location.pathname);
 
-  // Add the event listener to the registration form if it's present
-  document.addEventListener('DOMContentLoaded', () => {
-    const registerForm = document.forms['register'];
-    if (registerForm) {
-      registerForm.addEventListener('submit', onRegister);
-    }
+handleAuthUI();
+setLogoutListener();
 
-    // Add the event listener to the login form if it's present
-    const loginForm = document.forms['login'];
-    if (loginForm) {
-      loginForm.addEventListener('submit', onLogin);
-    }
-  });
+const registerForm = document.forms['register'];
+if (registerForm) {
+  registerForm.addEventListener('submit', onRegister);
 }
 
-initializeApp();
+const loginForm = document.forms['login'];
+if (loginForm) {
+  loginForm.addEventListener('submit', onLogin);
+}
+
+// Display posts if we are on the homepage
+if (window.location.pathname === "/") {
+  displayPosts();
+}
+
+if (window.location.pathname === "/profile/") {
+  initProfilePage();
+}
+
+// Add event listener for profile update form
+const updateForm = document.forms.updateProfile;
+if (updateForm) {
+  updateForm.addEventListener('submit', onUpdateProfile);
+}
+
+// Add event listener for editing a post if on edit post page
+const editPostForm = document.forms.editPost;
+if (editPostForm) {
+  editPostForm.addEventListener('submit', onUpdatePost);
+}
+
+

@@ -15,10 +15,6 @@ export async function onLogin(event) {
     // Call the API to login the user
     const result = await loginUser(userData);
 
-    // Save the access token to localStorage
-    const accessToken = result.data.accessToken;
-    localStorage.setItem('accessToken', accessToken);
-
     // Log the result and redirect the user to a profile or dashboard page
     console.log('Login successful:', result);
     window.location.href = '/'; // Adjust the redirection as needed

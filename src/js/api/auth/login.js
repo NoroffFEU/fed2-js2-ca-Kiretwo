@@ -16,6 +16,11 @@ export async function loginUser(userData) {
     }
 
     const data = await response.json();
+
+    // Save accessToken and username in localStorage
+    localStorage.setItem('accessToken', data.data.accessToken);
+    localStorage.setItem('username', data.data.name);
+
     return data;
   } catch (error) {
     console.error("Login error:", error);
