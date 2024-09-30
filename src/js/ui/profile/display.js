@@ -32,7 +32,7 @@ export async function initProfilePage() {
       const postElement = document.createElement('article');
       postElement.classList.add('post');
       postElement.innerHTML = `
-        <h3>${post.title}</h3>
+        <h3><a href="/post/?id=${post.id}">${post.title}</a></h3>
         <p>${post.body}</p>
         ${post.media?.url ? `<img src="${post.media.url}" alt="${post.media.alt || 'Post image'}">` : ''}
         <p>Created at: ${new Date(post.created).toLocaleString()}</p>

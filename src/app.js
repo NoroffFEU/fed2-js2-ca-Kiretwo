@@ -5,8 +5,13 @@ import { onLogin } from "./js/ui/auth/login.js";
 import { displayPosts } from "./js/ui/post/home.js";
 import { initProfilePage } from "./js/ui/profile/display.js";
 import { onUpdateProfile } from "./js/ui/profile/update.js";
+import { handleAuthUI } from "./js/ui/post/home.js";
+import { setLogoutListener } from "./js/ui/global/logout.js";
 
 await router(window.location.pathname);
+
+handleAuthUI();
+setLogoutListener();
 
 const registerForm = document.forms['register'];
 if (registerForm) {

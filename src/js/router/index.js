@@ -39,24 +39,30 @@ export default async function router(pathname = window.location.pathname) {
     case pathname === "/":
       await import("./views/home.js");
       break;
-    case pathname.startsWith("/auth/login"):
+    case pathname === "/auth/":
+      await import("./views/auth.js");
+      break;
+    case pathname === "/auth/login/":
       await import("./views/login.js");
       break;
-    case pathname.startsWith("/auth/register"):
+    case pathname === "/auth/register/":
       await import("./views/register.js");
       break;
-    case pathname.startsWith("/post"):
-      const module = await import("./views/post.js");
-      const queryString = window.location.search;
-      const params = new URLSearchParams(queryString);
+    case pathname === "/post/create/":
+      await import("./views/postCreate.js");
+      break;
+    case pathname === "/post/": {
+      // Check if the URL has an id query parameter
+      const params = new URLSearchParams(window.location.search);
       const postId = params.get("id");
 
       if (postId) {
-        module.initPostPage(postId); // Initialize the post page
+        await import("./views/post.js");
       } else {
-        console.error("Invalid post URL, post ID is missing.");
+        await import("./views/notFound.js");
       }
       break;
+    }
     case pathname === "/profile/":
       await import("./views/profile.js");
       break;

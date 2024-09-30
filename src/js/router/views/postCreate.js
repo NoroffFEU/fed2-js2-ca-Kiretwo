@@ -1,8 +1,10 @@
-import { onCreatePost } from "../../ui/post/create";
-import { authGuard } from "../../utilities/authGuard";
+import { onCreatePost } from "../../ui/post/create.js";
+import { authGuard } from "../../utilities/authGuard.js";
 
+// Check if user is authorized to create a post
 authGuard();
 
 const form = document.forms.createPost;
-
-form.addEventListener("submit", onCreatePost);
+if (form) {
+  form.addEventListener("submit", onCreatePost);
+}

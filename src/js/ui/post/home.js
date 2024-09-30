@@ -28,3 +28,40 @@ export async function displayPosts() {
     alert('Failed to load posts. Please try again later.');
   }
 }
+
+export function handleAuthUI() {
+  const accessToken = localStorage.getItem('accessToken');
+
+  const createPostButton = document.getElementById('create-post-button');
+  const logoutButton = document.getElementById('logout');
+  const loginLink = document.getElementById('login-link');
+  const registerLink = document.getElementById('register-link');
+
+  // Toggle the visibility of links and buttons if you are logged in or not
+  if (createPostButton && logoutButton && loginLink && registerLink) {
+    if (accessToken) {
+      createPostButton.classList.remove('hidden');
+      logoutButton.classList.remove('hidden');
+      loginLink.classList.add('hidden');
+      registerLink.classList.add('hidden');
+    } else {
+      createPostButton.classList.add('hidden');
+      logoutButton.classList.add('hidden');
+      loginLink.classList.remove('hidden');
+      registerLink.classList.remove('hidden');
+    }
+  }
+
+  // Add click event listeners to the links
+  if (loginLink) {
+    loginLink.addEventListener('click', () => {
+      localStorage.clear();
+    });
+  }
+
+  if (registerLink) {
+    registerLink.addEventListener('click', () => {
+      localStorage.clear();
+    });
+  }
+}

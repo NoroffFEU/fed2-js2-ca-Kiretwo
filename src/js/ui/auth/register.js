@@ -22,9 +22,10 @@ export async function onRegister(event) {
     console.log('Registration successful:', result);
 
     // Redirect to the login page or show a success message
-    // window.location.href = '/auth/login/';
+    alert('Registration successful. Redirecting to login page...')
+    window.location.href = '/auth/login/';
   } catch (error) {
     console.error('Error registering user:', error);
-    alert('Registration failed. Please try again.');
+    alert('Registration failed. User might be taken already. Please try again with different information.');
   }
 }
