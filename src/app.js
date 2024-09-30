@@ -7,6 +7,7 @@ import { initProfilePage } from "./js/ui/profile/display.js";
 import { onUpdateProfile } from "./js/ui/profile/update.js";
 import { handleAuthUI } from "./js/ui/post/home.js";
 import { setLogoutListener } from "./js/ui/global/logout.js";
+import { onUpdatePost } from "./js/ui/post/update.js";
 
 await router(window.location.pathname);
 
@@ -37,4 +38,11 @@ const updateForm = document.forms.updateProfile;
 if (updateForm) {
   updateForm.addEventListener('submit', onUpdateProfile);
 }
+
+// Add event listener for editing a post if on edit post page
+const editPostForm = document.forms.editPost;
+if (editPostForm) {
+  editPostForm.addEventListener('submit', onUpdatePost);
+}
+
 
