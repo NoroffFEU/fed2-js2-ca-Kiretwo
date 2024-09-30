@@ -79,6 +79,7 @@ export default async function router(pathname = window.location.pathname) {
 }
 */
 
+/*
 // Router 3
 export default async function router(pathname = window.location.pathname) {
   switch (true) {
@@ -123,6 +124,43 @@ export default async function router(pathname = window.location.pathname) {
       await import("./views/notFound.js");
   }
 }
+*/
+
+// Router 4
+export default async function router(pathname = window.location.pathname) {
+  switch (true) {
+    case pathname === "/":
+      await import("./views/home.js");
+      break;
+    case pathname.startsWith("/auth/login"):
+      await import("./views/login.js");
+      break;
+    case pathname.startsWith("/auth/register"):
+      await import("./views/register.js");
+      break;
+    case pathname.startsWith("/post/create"):
+      await import("./views/postCreate.js");
+      break;
+    case pathname.startsWith("/post") && pathname.includes("id="):
+      const module = await import("./views/post.js");
+      const queryString = window.location.search;
+      const params = new URLSearchParams(queryString);
+      const postId = params.get("id");
+
+      if (postId) {
+        module.initPostPage(postId); // Initialize the post page
+      } else {
+        console.error("Invalid post URL, post ID is missing.");
+      }
+      break;
+    case pathname === "/profile/":
+      await import("./views/profile.js");
+      break;
+    default:
+      await import("./views/notFound.js");
+  }
+}
+
 
 
 
