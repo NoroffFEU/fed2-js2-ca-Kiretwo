@@ -26,9 +26,6 @@ export async function initEditPostPage(postId) {
     // Set post ID in the form dataset to use during the update
     editForm.dataset.postId = postId;
 
-    // Remove any existing event listener to avoid multiple submissions
-    editForm.removeEventListener("submit", onUpdatePost);
-    
     // Add the submit event listener to handle updating the post
     editForm.addEventListener("submit", onUpdatePost);
   } catch (error) {
