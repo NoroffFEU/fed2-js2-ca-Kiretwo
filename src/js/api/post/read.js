@@ -1,32 +1,61 @@
-import { API_SOCIAL_POSTS, API_KEY } from '../constants';
+import { API_SOCIAL_POSTS } from '../constants';
+import { headers } from '../headers';
 
+// Function to read multiple posts with a specified limit
 export async function readPosts(limit = 12) {
   try {
-    const accessToken = localStorage.getItem('accessToken');
-
-    if (!accessToken) {
-      throw new Error("No access token found. Please log in first.");
-    }
-
-    const url = `${API_SOCIAL_POSTS}?_author=true`; // Remove `_limit` if it's not working
+    const url = `${API_SOCIAL_POSTS}?_author=true`; // Fetch all posts
 
     const response = await fetch(url, {
       method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Noroff-API-Key": API_KEY,
-        "Authorization": `Bearer ${accessToken}`,
-      },
+      headers: headers(), // Use the centralized headers function
     });
+
+    console.log('Fetching posts from URL:', url); // Debugging log
+    console.log('API response status:', response.status); // Debugging log
 
     if (!response.ok) {
       throw new Error("Failed to fetch posts");
     }
 
     const posts = await response.json();
-    return posts.data.slice(0, limit); // Limit the number of posts to `limit`
+
+    console.log('Fetched posts:', posts); // Debugging log
+
+    // Slice the posts to get the specified limit
+    return posts.data.slice(0, limit);
   } catch (error) {
     console.error("Error fetching posts:", error);
+    throw error;
+  }
+}
+
+// Function to read a single post by ID
+export async function readPost(id) {
+  try {
+    const url = `${API_SOCIAL_POSTS}/${id}?_author=true`;
+
+    console.log('Fetching post with ID:', id); // Debugging log
+    console.log('Using URL:', url); // Debugging log
+
+    const response = await fetch(url, {
+      method: "GET",
+      headers: headers(), // Use the centralized headers function
+    });
+
+    console.log('API response status:', response.status); // Debugging log
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch the post");
+    }
+
+    const post = await response.json();
+
+    console.log('Fetched post:', post); // Debugging log
+
+    return post.data;
+  } catch (error) {
+    console.error("Error fetching the post:", error);
     throw error;
   }
 }

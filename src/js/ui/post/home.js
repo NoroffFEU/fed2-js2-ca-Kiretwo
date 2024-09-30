@@ -1,32 +1,30 @@
 import { readPosts } from "../../api/post/read.js";
 
-// Function to initialize the home page
 export async function displayPosts() {
   try {
-    const posts = await readPosts(12); // Fetch only the first 12 posts
+    const posts = await readPosts();
 
-    // Get the feed container in the HTML
     const feedContainer = document.getElementById('feed');
     if (!feedContainer) {
       console.error('Feed container not found in the DOM');
       return;
     }
 
-    feedContainer.innerHTML = ''; // Clear any existing content
+    feedContainer.innerHTML = ''; // Clear existing content
 
-    // Render each post
     posts.forEach(post => {
       const postElement = document.createElement('article');
       postElement.classList.add('post');
       postElement.innerHTML = `
-        <h2>${post.title}</h2>
+        <h3><a href="/post/?id=${post.id}">${post.title}</a></h3>
         <p>${post.body}</p>
         ${post.media?.url ? `<img src="${post.media.url}" alt="${post.media.alt || 'Post image'}">` : ''}
-        <span>By: ${post.author ? post.author.name : 'Unknown'}</span>
+        <p>Posted by: ${post.author?.name || 'Unknown'}</p>
       `;
       feedContainer.appendChild(postElement);
     });
   } catch (error) {
     console.error('Error displaying posts:', error);
+    alert('Failed to load posts. Please try again later.');
   }
 }
