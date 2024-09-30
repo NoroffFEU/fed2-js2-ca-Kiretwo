@@ -1,31 +1,36 @@
-import { createPost } from "../../api/post/create.js";
+import { createPost } from "../../api/post/create";
 
 export async function onCreatePost(event) {
-  event.preventDefault(); // Prevent default form submission
+  // Prevent the default form submission
+  event.preventDefault();
 
-  // Extract form data
+  // Extract data from the form
   const form = event.target;
   const title = form.title.value;
   const body = form.body.value;
   const tags = form.tags.value.split(",").map(tag => tag.trim());
-  const media = form.mediaUrl.value;
+  const mediaUrl = form.mediaUrl.value; // Assuming there's an input named mediaUrl
+  const mediaAlt = form.mediaAlt.value; // Assuming there's an input named mediaAlt
 
   const postData = {
     title,
     body,
-    tags: tags.filter(tag => tag), // Remove empty tags
-    media: media ? { url: media, alt: "User-provided image" } : null,
+    tags,
   };
+  
+  // Add media only if mediaUrl is provided
+  if (mediaUrl) {
+    postData.media = { url: mediaUrl, alt: mediaAlt || "Post image" };
+  }
 
   try {
+    console.log(postData)
     // Call the API to create the post
     await createPost(postData);
-
-    // Redirect or update UI after a successful post
     alert("Post created successfully!");
-    window.location.href = "/"; // Redirect to homepage or feed
+    window.location.href = "/"; // Redirect to home after successful creation
   } catch (error) {
     console.error("Error creating post:", error);
-    alert("Failed to create post. Please try again.");
+    alert("Failed to create post. Please check your input and try again. MediaURL might not be accessible.");
   }
 }

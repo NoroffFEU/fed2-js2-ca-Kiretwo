@@ -3,12 +3,20 @@ import { headers } from '../headers';
 
 export async function createPost({ title, body, tags = [], media }) {
   try {
+    // Prepare the postData object
     const postData = {
       title,
       body,
       tags,
-      ...(media && { media: { url: media } }) // Include media if provided
     };
+
+    // Add the media object only if a URL is provided
+    if (media && media.url) {
+      postData.media = {
+        url: media.url,
+        alt: media.alt || "Post image", // Provide a default alt text if none is provided
+      };
+    }
 
     const response = await fetch(API_SOCIAL_POSTS, {
       method: "POST",
@@ -27,3 +35,4 @@ export async function createPost({ title, body, tags = [], media }) {
     throw error;
   }
 }
+
