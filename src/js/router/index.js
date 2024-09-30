@@ -22,7 +22,11 @@ export default async function router(pathname = window.location.pathname) {
 
       if (editPostId) {
         const editModule = await import("./views/postEdit.js");
-        editModule.initEditPostPage(editPostId);
+        if (editModule.initEditPostPage) {
+          await editModule.initEditPostPage(editPostId);
+        } else {
+          console.error("initEditPostPage function not found in postEdit module.");
+        }
       } else {
         console.error("Invalid post URL, post ID is missing.");
       }
@@ -33,7 +37,11 @@ export default async function router(pathname = window.location.pathname) {
 
       if (postId) {
         const viewModule = await import("./views/post.js");
-        viewModule.initPostPage(postId);
+        if (viewModule.initPostPage) {
+          await viewModule.initPostPage(postId);
+        } else {
+          console.error("initPostPage function not found in post module.");
+        }
       } else {
         console.error("Invalid post URL, post ID is missing.");
       }
@@ -46,6 +54,7 @@ export default async function router(pathname = window.location.pathname) {
       alert("Page cannot be found in /src/views");
   }
 }
+
 
 
 
