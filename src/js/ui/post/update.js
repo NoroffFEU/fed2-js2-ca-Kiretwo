@@ -4,7 +4,7 @@ export async function onUpdatePost(event) {
   event.preventDefault();
 
   const form = event.target;
-  const postId = form.dataset.postId; // Get post ID from form attribute
+  const postId = form.dataset.postId; // Get the postId from edit form dataset
   const title = form.title.value;
   const body = form.body.value;
   const tags = form.tags.value.split(",").map(tag => tag.trim());

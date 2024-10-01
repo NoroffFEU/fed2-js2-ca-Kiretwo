@@ -1,14 +1,14 @@
 import { API_SOCIAL_POSTS } from '../constants';
 import { headers } from '../headers';
 
-// Function to read multiple posts with a specified limit
+// Function to fetch posts from api and limit to 12 post displayed
 export async function readPosts(limit = 12) {
   try {
-    const url = `${API_SOCIAL_POSTS}?_author=true`; // Fetch all posts
+    const url = `${API_SOCIAL_POSTS}?_author=true`; // Fetch posts and author name
 
     const response = await fetch(url, {
       method: "GET",
-      headers: headers(), // Use the centralized headers function
+      headers: headers(),
     });
 
     console.log('Fetching posts from URL:', url); // Debugging log
@@ -40,7 +40,7 @@ export async function readPost(id) {
 
     const response = await fetch(url, {
       method: "GET",
-      headers: headers(), // Use the centralized headers function
+      headers: headers(),
     });
 
     console.log('API response status:', response.status); // Debugging log

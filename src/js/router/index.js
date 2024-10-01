@@ -3,6 +3,8 @@
 // You may change the behaviour or approach of this file if you choose
 
 export default async function router(pathname = window.location.pathname) {
+  const queryParams = new URLSearchParams(window.location.search);
+
   switch (true) {
     case pathname === "/":
       await import("./views/home.js");
@@ -16,25 +18,28 @@ export default async function router(pathname = window.location.pathname) {
     case pathname === "/post/create/":
       await import("./views/postCreate.js");
       break;
-    case pathname.startsWith("/post/edit"):
-      const editParams = new URLSearchParams(window.location.search);
-      const editPostId = editParams.get("id");
-
+    case pathname.startsWith("/post/edit/"):
+      const editPostId = queryParams.get("id");
       if (editPostId) {
-        const editModule = await import("./views/postEdit.js");
-        if (editModule.initEditPostPage) {
-          await editModule.initEditPostPage(editPostId);
-        } else {
-          console.error("initEditPostPage function not found in postEdit module.");
+        try {
+          const editModule = await import("./views/postEdit.js");
+          console.log("editModule loaded:", editModule); // Debug log to confirm loading
+          if (editModule?.initEditPostPage) {
+            await editModule.initEditPostPage(editPostId);
+          } else {
+            console.error(
+              "initEditPostPage function not found in postEdit module."
+            );
+          }
+        } catch (error) {
+          console.error("Failed to load the postEdit module:", error);
         }
       } else {
         console.error("Invalid post URL, post ID is missing.");
       }
       break;
     case pathname.startsWith("/post"):
-      const viewParams = new URLSearchParams(window.location.search);
-      const postId = viewParams.get("id");
-
+      const postId = queryParams.get("id");
       if (postId) {
         const viewModule = await import("./views/post.js");
         if (viewModule.initPostPage) {
@@ -54,14 +59,3 @@ export default async function router(pathname = window.location.pathname) {
       alert("Page cannot be found in /src/views");
   }
 }
-
-
-
-
-
-
-
-
-
-
-
