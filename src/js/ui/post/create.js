@@ -9,8 +9,8 @@ export async function onCreatePost(event) {
   const title = form.title.value;
   const body = form.body.value;
   const tags = form.tags.value.split(",").map(tag => tag.trim());
-  const mediaUrl = form.mediaUrl.value; // Assuming there's an input named mediaUrl
-  const mediaAlt = form.mediaAlt.value; // Assuming there's an input named mediaAlt
+  const mediaUrl = form.mediaUrl.value;
+  const mediaAlt = form.mediaAlt.value;
 
   const postData = {
     title,

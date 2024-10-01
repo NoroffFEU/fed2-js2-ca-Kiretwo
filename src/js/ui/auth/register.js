@@ -21,7 +21,7 @@ export async function onRegister(event) {
     const result = await registerUser(userData);
     console.log('Registration successful:', result);
 
-    // Redirect to the login page or show a success message
+    // Redirect to the login page and show a success message
     alert('Registration successful. Redirecting to login page...')
     window.location.href = '/auth/login/';
   } catch (error) {

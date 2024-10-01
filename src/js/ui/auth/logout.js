@@ -3,6 +3,6 @@ export function onLogout() {
   localStorage.removeItem('accessToken');
   localStorage.removeItem('username');
 
-  // Optionally, redirect to the login page or home page
+  // Redirect to login page after logging out
   window.location.href = "/auth/login/";
 }

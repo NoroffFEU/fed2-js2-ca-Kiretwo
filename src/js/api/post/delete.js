@@ -17,7 +17,7 @@ export async function deletePost(id) {
       return await response.json(); // Parse JSON only if response is not empty
     }
 
-    return; // Return nothing if the response is empty (e.g., status 204)
+    return; // Return nothing if the response is empty
   } catch (error) {
     console.error("Error deleting post:", error);
     throw error;

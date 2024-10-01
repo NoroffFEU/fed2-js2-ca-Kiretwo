@@ -3,7 +3,6 @@ import { headers } from '../headers';
 
 export async function createPost({ title, body, tags = [], media }) {
   try {
-    // Prepare the postData object
     const postData = {
       title,
       body,
@@ -20,7 +19,7 @@ export async function createPost({ title, body, tags = [], media }) {
 
     const response = await fetch(API_SOCIAL_POSTS, {
       method: "POST",
-      headers: headers(), // Use the centralized headers function
+      headers: headers(),
       body: JSON.stringify(postData),
     });
 

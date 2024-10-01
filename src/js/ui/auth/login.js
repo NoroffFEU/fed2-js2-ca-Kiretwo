@@ -15,9 +15,9 @@ export async function onLogin(event) {
     // Call the API to login the user
     const result = await loginUser(userData);
 
-    // Log the result and redirect the user to a profile or dashboard page
+    // Log the result and redirect the user to the home page
     console.log('Login successful:', result);
-    window.location.href = '/'; // Adjust the redirection as needed
+    window.location.href = '/';
 
   } catch (error) {
     console.error('Error logging in:', error);

@@ -1,6 +1,5 @@
 import { readProfile } from "../../api/profile/read.js";
 
-// Function to initialize the profile page for the logged-in user
 export async function initProfilePage() {
   try {
     const profile = await readProfile();
