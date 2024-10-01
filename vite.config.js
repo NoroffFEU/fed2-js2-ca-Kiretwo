@@ -1,10 +1,9 @@
 import { resolve } from "path";
 import { defineConfig } from "vite";
-import os from "os";
 
 export default defineConfig({
   appType: "mpa",
-  base: "/",
+  base: "",
   build: {
     target: "esnext",
     rollupOptions: {
