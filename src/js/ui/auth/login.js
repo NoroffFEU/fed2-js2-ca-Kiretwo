@@ -17,7 +17,7 @@ export async function onLogin(event) {
 
     // Log the result and redirect the user to the home page
     console.log('Login successful:', result);
-    //window.location.href = '/';
+    window.location.href = '/';
 
   } catch (error) {
     console.error('Error logging in:', error);
