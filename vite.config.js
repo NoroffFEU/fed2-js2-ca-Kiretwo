@@ -3,7 +3,7 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   appType: "mpa",
-  base: "",
+  base: "/",
   build: {
     target: "esnext",
     rollupOptions: {
@@ -18,5 +18,8 @@ export default defineConfig({
         createPost: resolve(__dirname, "./post/create/index.html"),
       },
     },
+  },
+  server: {
+    open: "/", // Open the server automatically in browser
   },
 });
