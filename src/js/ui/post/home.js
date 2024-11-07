@@ -13,14 +13,26 @@ export async function displayPosts() {
     feedContainer.innerHTML = ''; // Clear existing content
 
     posts.forEach(post => {
-      const postElement = document.createElement('article');
-      postElement.classList.add('post');
+      const postElement = document.createElement('div');
+      postElement.classList.add('col-12', 'col-md-6', 'col-lg-4');
+
       postElement.innerHTML = `
-        <h3><a href="/post/?id=${post.id}">${post.title}</a></h3>
-        <p>${post.body}</p>
-        ${post.media?.url ? `<img src="${post.media.url}" alt="${post.media.alt || 'Post image'}">` : ''}
-        <p>Posted by: ${post.author?.name || 'Unknown'}</p>
+        <a href="/post/?id=${post.id}" class="text-decoration-none">
+          <div class="card h-100">
+            ${post.media?.url ? `
+              <img src="${post.media.url}" class="card-img-top" alt="${post.media.alt || 'Post image'}">
+            ` : ''}
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">${post.title}</h5>
+              <p class="card-text">${post.body}</p>
+              <p class="card-text mt-auto">
+                <small class="text-muted">Posted by: ${post.author?.name || 'Unknown'}</small>
+              </p>
+            </div>
+          </div>
+        </a>
       `;
+
       feedContainer.appendChild(postElement);
     });
   } catch (error) {
@@ -37,7 +49,6 @@ export function handleAuthUI() {
   const loginLink = document.getElementById('login-link');
   const registerLink = document.getElementById('register-link');
 
-  // Toggle the visibility of links and buttons if you are logged in or not
   if (createPostButton && logoutButton && loginLink && registerLink) {
     if (accessToken) {
       createPostButton.classList.remove('hidden');
@@ -50,18 +61,5 @@ export function handleAuthUI() {
       loginLink.classList.remove('hidden');
       registerLink.classList.remove('hidden');
     }
-  }
-
-  // Add click event listeners to the links
-  if (loginLink) {
-    loginLink.addEventListener('click', () => {
-      localStorage.clear();
-    });
-  }
-
-  if (registerLink) {
-    registerLink.addEventListener('click', () => {
-      localStorage.clear();
-    });
   }
 }
