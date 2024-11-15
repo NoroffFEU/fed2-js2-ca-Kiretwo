@@ -51,27 +51,46 @@ export async function initProfilePage() {
     }
 
     postsContainer.innerHTML = ""; // Clear any existing content
-    profile.posts.forEach((post) => {
-      const postElement = document.createElement("div");
-      postElement.classList.add("card", "mb-3");
 
-      postElement.innerHTML = `
-        <div class="card-body">
-          <h3 class="card-title"><a href="/post/?id=${post.id}">${post.title}</a></h3>
-          <p class="card-text">${post.body}</p>
-          ${
-            post.media?.url
-              ? `
-          <div class="mt-3">
-            <img src="${post.media.url}" alt="${post.media.alt || "Post image"}" class="img-fluid">
-          </div>`
-              : ""
-          }
-          <p class="card-text"><small class="text-muted">Created at: ${new Date(post.created).toLocaleString()}</small></p>
-        </div>
-      `;
-      postsContainer.appendChild(postElement);
-    });
+    if (profile.posts && profile.posts.length > 0) {
+      // Create a row for the posts grid
+      const row = document.createElement("div");
+      row.classList.add("row", "gy-4");
+
+      profile.posts.forEach((post) => {
+        const col = document.createElement("div");
+        col.classList.add("col-12", "col-md-6", "col-lg-4");
+
+        const postElement = document.createElement("div");
+        postElement.classList.add("card", "h-100");
+
+        postElement.innerHTML = `
+          <a href="/post/?id=${post.id}" class="text-decoration-none h-100 d-flex flex-column">
+            ${
+              post.media?.url
+                ? `
+            <img src="${post.media.url}" alt="${post.media.alt || "Post image"}" class="card-img-top">
+            `
+                : ""
+            }
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">${post.title}</h5>
+              <p class="card-text">${post.body.substring(0, 100)}${post.body.length > 100 ? "..." : ""}</p>
+              <p class="card-text mt-auto">
+                <small class="text-muted">Created at: ${new Date(post.created).toLocaleString()}</small>
+              </p>
+            </div>
+          </a>
+        `;
+
+        col.appendChild(postElement);
+        row.appendChild(col);
+      });
+
+      postsContainer.appendChild(row);
+    } else {
+      postsContainer.innerHTML = "<p>No posts available.</p>";
+    }
   } catch (error) {
     console.error("Error displaying profile:", error);
     alert("Failed to load profile. Please try again later.");

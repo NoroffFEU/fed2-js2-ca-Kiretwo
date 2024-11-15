@@ -1,28 +1,84 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Profile Noroff FED2 JS2 CA</title>
-  <script type="module" src="/src/app.js"></script>
-</head>
-<body class="profile-page">
-  <div class="container my-5">
-    <section id="profile">
-      <!-- Profile content will be dynamically injected here -->
-    </section>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile Noroff FED2 JS2 CA</title>
+    <script type="module" src="/src/app.js"></script>
+  </head>
+  <body class="profile-page">
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <img
+            src="/images/noroff-logo.png"
+            alt="Noroff Logo"
+            style="height: 40px"
+          />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a href="/profile/" class="nav-link">My Profile</a>
+            </li>
+            <li class="nav-item">
+              <a
+                href="/post/create/"
+                id="create-post-button"
+                class="nav-link hidden"
+                >Create Post</a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="/auth/login/" id="login-link" class="nav-link">Login</a>
+            </li>
+            <li class="nav-item">
+              <a href="/auth/register/" id="register-link" class="nav-link"
+                >Register</a
+              >
+            </li>
+            <li class="nav-item">
+              <button
+                id="logout"
+                class="nav-link btn btn-link hidden"
+                style="cursor: pointer"
+              >
+                Logout
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container my-5">
+      <section id="profile">
+        <!-- Profile content will be dynamically injected here -->
+      </section>
 
-    <h2 class="mb-4">Posts by User</h2>
+      <h2 class="mb-4">Posts by User</h2>
 
-    <section id="user-posts">
-      <!-- Posts content will be dynamically injected here -->
-    </section>
+      <section id="user-posts">
+        <!-- Posts content will be dynamically injected here -->
+      </section>
 
-    <form name="updateProfile" class="mb-4">
-      <button type="submit" class="btn btn-primary">Update Profile</button>
-    </form>
-
-    <a href="/" class="btn btn-secondary">Back to Home</a>
-  </div>
-</body>
+      <div class="d-flex align-items-center mt-4">
+        <form name="updateProfile" class="me-2">
+          <button type="submit" class="btn btn-primary">Update Profile</button>
+        </form>
+        <a href="/" class="btn btn-secondary">Back to Home</a>
+      </div>
+    </div>
+  </body>
 </html>
