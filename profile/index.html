@@ -6,19 +6,23 @@
   <title>Profile Noroff FED2 JS2 CA</title>
   <script type="module" src="/src/app.js"></script>
 </head>
-<body>
-  <h1>Profile</h1>
-  <section id="profile">
-  </section>
+<body class="profile-page">
+  <div class="container my-5">
+    <section id="profile">
+      <!-- Profile content will be dynamically injected here -->
+    </section>
 
-  <h2>Posts by User</h2>
-  <section id="user-posts">
-  </section>
+    <h2 class="mb-4">Posts by User</h2>
 
-  <form name="updateProfile">
-    <button>Update Profile</button>
-  </form>
+    <section id="user-posts">
+      <!-- Posts content will be dynamically injected here -->
+    </section>
 
-  <a href="/">Back to Home</a>
+    <form name="updateProfile" class="mb-4">
+      <button type="submit" class="btn btn-primary">Update Profile</button>
+    </form>
+
+    <a href="/" class="btn btn-secondary">Back to Home</a>
+  </div>
 </body>
 </html>

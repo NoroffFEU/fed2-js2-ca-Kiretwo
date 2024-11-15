@@ -2,54 +2,102 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Noroff FED2 JS2 CA</title>
     <script type="module" src="/src/app.js"></script>
   </head>
-
   <body>
-    <h1>Register</h1>
-
-    <form name="register">
-      <div>
-        <label for="name">Name</label>
-        <input
-          id="name"
-          type="text"
-          name="name"
-          required
-          maxlength="20"
-          pattern="^[\w]+$"
-          title="Please enter a username using only letters and numbers"
-        />
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <img src="/images/noroff-logo.png" alt="Noroff Logo" style="height: 40px;" />
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a href="/post/create/" id="create-post-button" class="nav-link hidden">Create Post</a>
+            </li>
+            <li class="nav-item">
+              <a href="/auth/login/" id="login-link" class="nav-link">Login</a>
+            </li>
+            <li class="nav-item">
+              <a href="/auth/register/" id="register-link" class="nav-link">Register</a>
+            </li>
+            <li class="nav-item">
+              <button id="logout" class="nav-link btn btn-link hidden" style="cursor: pointer;">Logout</button>
+            </li>
+          </ul>
+        </div>
       </div>
-
-      <div>
-        <label for="email">Email</label>
-        <input
-          id="email"
-          type="email"
-          name="email"
-          required
-          pattern="^[\w\-.]+@(stud\.)?noroff\.no$"
-          title="Please enter a valid noroff.no or stud.noroff.no address"
-        />
+    </nav>
+    <!-- Register Form -->
+    <div class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+          <h1 class="mb-4 text-center fw-bold">Register</h1>
+          <form name="register" class="needs-validation" novalidate>
+            <!-- Name Field -->
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input
+                id="name"
+                type="text"
+                name="name"
+                class="form-control"
+                required
+              />
+              <div class="invalid-feedback">
+                Please enter your name.
+              </div>
+            </div>
+            <!-- Email Field -->
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input
+                id="email"
+                type="email"
+                name="email"
+                class="form-control"
+                required
+                pattern="^[\w\-.]+@(stud\.)?noroff\.no$"
+                title="Please enter a valid noroff.no or stud.noroff.no email address"
+              />
+              <div class="invalid-feedback">
+                Please enter a valid Noroff email address.
+              </div>
+            </div>
+            <!-- Password Field -->
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                class="form-control"
+                required
+                minlength="8"
+              />
+              <div class="invalid-feedback">
+                Please enter a password with at least 8 characters.
+              </div>
+            </div>
+            <!-- Register Button -->
+            <div class="d-grid mb-3">
+              <button type="submit" class="btn btn-primary">
+                Register
+              </button>
+            </div>
+            <!-- Login Link -->
+            <p class="text-center">
+              Already have an account? <a href="/auth/login/">Login here</a>
+            </p>
+          </form>
+        </div>
       </div>
-
-      <div>
-        <label for="password">Password</label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          required
-          minlength="8"
-        />
-      </div>
-
-      <a href="/auth/login/">Login</a>
-      <button>Register</button>
-    </form>
+    </div>
   </body>
 </html>

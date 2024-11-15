@@ -12,37 +12,101 @@ $secondary: #6c757d;
   display: none !important;
 }
 
+// Ensure images are circular globally
+.rounded-circle {
+  border-radius: 50% !important;
+}
+
 /* HOME */
 .nav-buttons {
   display: flex; // Ensure flex container
   flex-wrap: wrap;
-  
+
   @include bs.media-breakpoint-down('sm') { // Use the Bootstrap namespace and pass breakpoint as a string
     flex-direction: column;
-    
+
     .btn {
       width: 100%;
     }
   }
 }
 
-/* CARD HOVER EFFECT */
-.card {
-  transition: transform 0.2s;
+.home-page {
+  /* CARD HOVER EFFECT */
+  .card {
+    transition: transform 0.2s;
 
-  // Apply the hover effect when either the card or its parent anchor is hovered
-  &:hover,
-  a:hover & {
-    transform: translateY(-5px);
+    // Apply the hover effect when either the card or its parent anchor is hovered
+    &:hover,
+    a:hover & {
+      transform: translateY(-5px);
+    }
+  }
+
+  /* Ensure links inside cards don't add default styles */
+  a.text-decoration-none {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: none;
+    }
   }
 }
 
-/* Ensure links inside cards don't add default styles */
-a.text-decoration-none {
-  color: inherit;
-  text-decoration: none;
+/* PROFILE PAGE */
+.profile-page {
+  // Profile Header Styles
+  .profile-header {
+    position: relative;
 
-  &:hover {
-    text-decoration: none;
+    // Banner Image
+    img.img-fluid.w-100 {
+      height: 300px;
+      object-fit: cover;
+    }
+
+    .default-banner {
+      height: 300px;
+      background-color: bs.$gray-200;
+    }
+
+    // Avatar Image
+    .avatar-img {
+      width: 150px;
+      height: 150px;
+      position: absolute;
+      bottom: -75px; // Half of avatar height to overlap
+      left: 50%;
+      transform: translateX(-50%);
+      border: 5px solid white;
+      background-color: bs.$gray-200;
+      object-fit: cover;
+    }
+  }
+
+  // Profile Info Styles
+  .profile-info {
+    margin-top: 85px; // Adjust for avatar overlap
+    text-align: center;
+
+    h2 {
+      margin-top: 10px;
+      color: $primary;
+    }
+
+    .lead {
+      font-size: 1.25rem;
+    }
+  }
+
+  // Default Avatar Styling
+  .avatar-img.bg-secondary {
+    background-color: bs.$secondary;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
   }
 }
