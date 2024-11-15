@@ -7,30 +7,137 @@
     <script type="module" src="/src/app.js"></script>
   </head>
   <body>
-    <h1>Create Post</h1>
-
-    <form name="createPost">
-      <div>
-        <label for="title">Title</label>
-        <input type="text" id="title" name="title" required />
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <img
+            src="/images/noroff-logo.png"
+            alt="Noroff Logo"
+            style="height: 40px"
+          />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a href="/profile/" class="nav-link">My Profile</a>
+            </li>
+            <li class="nav-item">
+              <a
+                href="/post/create/"
+                id="create-post-button"
+                class="nav-link hidden"
+                >Create Post</a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="/auth/login/" id="login-link" class="nav-link">Login</a>
+            </li>
+            <li class="nav-item">
+              <a href="/auth/register/" id="register-link" class="nav-link"
+                >Register</a
+              >
+            </li>
+            <li class="nav-item">
+              <button
+                id="logout"
+                class="nav-link btn btn-link hidden"
+                style="cursor: pointer"
+              >
+                Logout
+              </button>
+            </li>
+          </ul>
+        </div>
       </div>
-      <div>
-        <label for="body">Body</label>
-        <textarea id="body" name="body" required></textarea>
+    </nav>
+    <!-- Create Post Form -->
+    <div class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+          <h1 class="mb-4 text-center">Create Post</h1>
+          <form name="createPost" class="needs-validation" novalidate>
+            <!-- Title Field -->
+            <div class="mb-3">
+              <label for="title" class="form-label">Title</label>
+              <input
+                type="text"
+                id="title"
+                name="title"
+                class="form-control"
+                required
+              />
+              <div class="invalid-feedback">Please enter a title.</div>
+            </div>
+            <!-- Body Field -->
+            <div class="mb-3">
+              <label for="body" class="form-label">Body</label>
+              <textarea
+                id="body"
+                name="body"
+                class="form-control"
+                rows="5"
+                required
+              ></textarea>
+              <div class="invalid-feedback">
+                Please enter the body of the post.
+              </div>
+            </div>
+            <!-- Tags Field -->
+            <div class="mb-3">
+              <label for="tags" class="form-label"
+                >Tags</label
+              >
+              <input type="text" id="tags" name="tags" class="form-control" />
+              <div class="form-text">
+                Separate tags with commas (e.g., "cat, funny, inspirational").
+              </div>
+            </div>
+            <!-- Media URL Field -->
+            <div class="mb-3">
+              <label for="mediaUrl" class="form-label">Media URL</label>
+              <input
+                type="url"
+                id="mediaUrl"
+                name="mediaUrl"
+                class="form-control"
+              />
+              <div class="form-text">
+                Provide a URL to an image or video to include in your post
+                (optional).
+              </div>
+            </div>
+            <!-- Media Alt Field -->
+            <div class="mb-3">
+              <label for="mediaAlt" class="form-label">Media Alt Text</label>
+              <input
+                type="text"
+                id="mediaAlt"
+                name="mediaAlt"
+                class="form-control"
+              />
+              <div class="form-text">
+                Provide alternative text for the media (optional).
+              </div>
+            </div>
+            <!-- Submit Button -->
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary">Create Post</button>
+            </div>
+          </form>
+        </div>
       </div>
-      <div>
-        <label for="tags">Tags (comma separated)</label>
-        <input type="text" id="tags" name="tags" />
-      </div>
-      <div>
-        <label for="mediaUrl">Media URL</label>
-        <input type="url" id="mediaUrl" name="mediaUrl" />
-      </div>
-      <div>
-        <label for="mediaAlt">Media Alt</label>
-        <input type="text" id="mediaAlt" name="mediaAlt" />
-      </div>
-      <button type="submit">Create Post</button>
-    </form>
+    </div>
   </body>
 </html>

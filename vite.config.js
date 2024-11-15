@@ -22,4 +22,11 @@ export default defineConfig({
   server: {
     open: "/", // Open the server automatically in browser
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        quietDeps: true, // Suppress deprecation warnings from dependencies
+      },
+    },
+  },
 });

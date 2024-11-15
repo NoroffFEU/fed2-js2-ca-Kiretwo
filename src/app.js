@@ -1,4 +1,4 @@
-import "./css/style.css";
+import "./scss/styles.scss";
 import router from "./js/router";
 import { onRegister } from "./js/ui/auth/register.js";
 import { onLogin } from "./js/ui/auth/login.js";
