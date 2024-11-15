@@ -147,3 +147,43 @@ $secondary: #6c757d;
     }
   }
 }
+
+/* POST DETAIL PAGE */
+.post-detail-page {
+  #post-detail {
+    .card {
+      border: 1px solid bs.$gray-300;
+      border-radius: bs.$border-radius;
+      overflow: hidden;
+
+      .card-img-top {
+        width: 100%;
+        height: auto;
+        max-height: 400px;
+        object-fit: cover;
+      }
+
+      .card-body {
+        padding: 1.5rem;
+
+        .card-title {
+          font-size: 2rem;
+          margin-bottom: 1rem;
+        }
+
+        .card-text {
+          font-size: 1.1rem;
+          line-height: 1.6;
+          color: bs.$gray-800;
+        }
+      }
+
+      .card-footer {
+        background-color: transparent;
+        border-top: none;
+        font-size: 0.9rem;
+        padding: 1rem 1.5rem;
+      }
+    }
+  }
+}

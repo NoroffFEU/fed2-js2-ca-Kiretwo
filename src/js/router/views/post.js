@@ -1,3 +1,4 @@
+// src/pages/postDetail.js
 import { readPost } from "../../api/post/read.js";
 import { onDeletePost } from "../../ui/post/delete.js";
 
@@ -11,39 +12,58 @@ export async function initPostPage(postId) {
       return;
     }
 
-    // Display the post details in the container
-    postDetailContainer.innerHTML = `
-      <h2>${post.title}</h2>
-      <p>${post.body}</p>
-      ${post.media?.url ? `<img src="${post.media.url}" alt="${post.media.alt || "Post image"}">` : ""}
-      <p>Posted by: ${post.author?.name || 'Unknown'}</p>
-      <p>Created at: ${new Date(post.created).toLocaleString()}</p>
-      <div id="post-actions" class="hidden">
-        <button id="edit-post">Edit</button>
-        <button id="delete-post">Delete</button>
-      </div>
-    `;
-
     // Check if the logged-in user is the author
     const accessToken = localStorage.getItem("accessToken");
     const loggedInUsername = localStorage.getItem("username");
+    const isAuthor = accessToken && post.author?.name === loggedInUsername;
 
-    if (accessToken && post.author?.name === loggedInUsername) {
-      // Display the edit and delete buttons
-      const postActionsContainer = document.getElementById("post-actions");
-      postActionsContainer.classList.remove("hidden");
+    // Display the post details in the container
+    postDetailContainer.innerHTML = `
+      <div class="card mb-5">
+        ${
+          post.media?.url
+            ? `
+          <img src="${post.media.url}" alt="${post.media.alt || "Post image"}" class="card-img-top img-fluid">
+        `
+            : ""
+        }
+        <div class="card-body">
+          <h1 class="card-title">${post.title}</h1>
+          <p class="card-text">${post.body}</p>
+        </div>
+        <div class="card-footer text-muted d-flex justify-content-between">
+          <span>Posted by: ${post.author?.name || "Unknown"}</span>
+          <span>Created at: ${new Date(post.created).toLocaleString()}</span>
+        </div>
+      </div>
+      ${
+        isAuthor
+          ? `
+        <div id="post-actions" class="mt-3 text-center">
+          <button id="edit-post" class="btn btn-primary me-2">Edit</button>
+          <button id="delete-post" class="btn btn-danger">Delete</button>
+        </div>
+      `
+          : ""
+      }
+    `;
 
+    if (isAuthor) {
       // Add event listeners
       document.getElementById("edit-post").addEventListener("click", () => {
         window.location.href = `/post/edit/?id=${postId}`;
       });
 
-      document.getElementById("delete-post").addEventListener("click", async () => {
-        const confirmDelete = confirm("Are you sure you want to delete this post?");
-        if (confirmDelete) {
-          await onDeletePost(postId);
-        }
-      });
+      document
+        .getElementById("delete-post")
+        .addEventListener("click", async () => {
+          const confirmDelete = confirm(
+            "Are you sure you want to delete this post?"
+          );
+          if (confirmDelete) {
+            await onDeletePost(postId);
+          }
+        });
     }
   } catch (error) {
     console.error("Error displaying post:", error);

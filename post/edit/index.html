@@ -6,32 +6,123 @@
     <title>Edit Post | Noroff FED2 JS2 CA</title>
     <script type="module" src="/src/app.js"></script>
   </head>
-  <body>
-    <h1>Edit Post</h1>
+  <body class="edit-post-page">
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <img
+            src="/images/noroff-logo.png"
+            alt="Noroff Logo"
+            style="height: 40px"
+          />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a href="/profile/" class="nav-link">My Profile</a>
+            </li>
+            <li class="nav-item">
+              <a
+                href="/post/create/"
+                id="create-post-button"
+                class="nav-link hidden"
+                >Create Post</a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="/auth/login/" id="login-link" class="nav-link">Login</a>
+            </li>
+            <li class="nav-item">
+              <a href="/auth/register/" id="register-link" class="nav-link"
+                >Register</a
+              >
+            </li>
+            <li class="nav-item">
+              <button
+                id="logout"
+                class="nav-link btn btn-link hidden"
+                style="cursor: pointer"
+              >
+                Logout
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Edit Post Form -->
+    <main class="container my-5">
+      <h1 class="mb-4 text-center">Edit Post</h1>
 
-    <form name="editPost" data-post-id="">
-      <div>
-        <label for="title">Title</label>
-        <input type="text" id="title" name="title" required />
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+          <form name="editPost" data-post-id="">
+            <div class="mb-3">
+              <label for="title" class="form-label">Title</label>
+              <input
+                type="text"
+                id="title"
+                name="title"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="body" class="form-label">Body</label>
+              <textarea
+                id="body"
+                name="body"
+                class="form-control"
+                rows="5"
+                required
+              ></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="tags" class="form-label">Tags (comma separated)</label>
+              <input
+                type="text"
+                id="tags"
+                name="tags"
+                class="form-control"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="mediaUrl" class="form-label">Media URL</label>
+              <input
+                type="url"
+                id="mediaUrl"
+                name="mediaUrl"
+                class="form-control"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="mediaAlt" class="form-label">Media Alt Text</label>
+              <input
+                type="text"
+                id="mediaAlt"
+                name="mediaAlt"
+                class="form-control"
+              />
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Save Changes</button>
+          </form>
+          <div class="text-center mt-5">
+            <a href="/" class="btn btn-secondary">Back to Home</a>
+          </div>
+        </div>
       </div>
-      <div>
-        <label for="body">Body</label>
-        <textarea id="body" name="body" required></textarea>
-      </div>
-      <div>
-        <label for="tags">Tags (comma separated)</label>
-        <input type="text" id="tags" name="tags" />
-      </div>
-      <div>
-        <label for="mediaUrl">Media URL</label>
-        <input type="url" id="mediaUrl" name="mediaUrl" />
-      </div>
-      <div>
-        <label for="mediaAlt">Media Alt</label>
-        <input type="text" id="mediaAlt" name="mediaAlt" />
-      </div>
-      <button type="submit">Save Changes</button>
-    </form>
-    <a href="/">Back to Home</a>
+    </main>
   </body>
 </html>
